@@ -1,6 +1,7 @@
 // This file is generated.
+import UIKit
 import Foundation
-import MapboxMaps
+@_spi(Experimental) import MapboxMaps
 
 
 /// A layer to render 3D Models.
@@ -128,7 +129,7 @@ import MapboxMaps
 extension TMBModelLayer {
     func unwrap() -> ModelLayer {
         var result = ModelLayer(id: self.id,
-            source: self.source)
+            source: self.source ?? "")
 
         self.mapTo(&result)
 
@@ -174,7 +175,7 @@ extension TMBModelLayer {
 extension ModelLayer {
     func wrap() -> TMBModelLayer {
         var result = TMBModelLayer(id: self.id,
-          source: self.source)
+          source: self.source ?? "")
 
         self.mapTo(&result)
 

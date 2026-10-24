@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 class TMBError : Error {
     public let message: String

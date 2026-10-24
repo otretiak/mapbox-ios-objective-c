@@ -1,5 +1,6 @@
+import UIKit
 import Foundation
-import MapboxMaps
+@_spi(Experimental) import MapboxMaps
 
 
 /// Struct of supported Layer rendering types
@@ -63,6 +64,7 @@ import MapboxMaps
     @objc public static let slot = TMBLayerType(origin: LayerType.slot)
 
     /// Layer used for a 3D model
+    @objc public static let model = TMBLayerType(origin: LayerType.model)
 }
 extension LayerType: ObjcConvertible {
     public func wrap() -> TMBLayerType {

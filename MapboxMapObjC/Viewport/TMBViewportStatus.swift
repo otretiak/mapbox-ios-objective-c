@@ -1,3 +1,4 @@
+import UIKit
 //
 //  TMBViewportStatus.swift
 //  MapboxMapObjC

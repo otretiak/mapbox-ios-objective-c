@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 /// Information about a layer
 @objc open class TMBLayerInfo: NSObject {

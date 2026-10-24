@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 import Turf
 @_implementationOnly import MapboxCoreMaps_Private

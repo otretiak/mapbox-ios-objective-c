@@ -1,3 +1,4 @@
+import UIKit
 //
 //  TMBFollowPuckViewportStateBearing.swift
 //  MapboxMapObjC

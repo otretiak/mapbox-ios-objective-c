@@ -1,3 +1,4 @@
+import UIKit
 //
 //  TMBViewportTransition.swift
 //  MapboxMapObjC

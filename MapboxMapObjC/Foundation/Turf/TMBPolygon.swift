@@ -1,3 +1,4 @@
+import UIKit
 import CoreLocation
 import Turf
 import MapboxCommon

@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 
 /// Captures potential values of the `data` property of a GeoJSONSource

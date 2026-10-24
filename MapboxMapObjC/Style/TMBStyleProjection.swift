@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 
 /// Describes the projection used to render the map.

@@ -1,3 +1,4 @@
+import UIKit
 /// A structure represeting a Model
 
 import MapboxMaps

@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 
 /// Represents the interpolated data ready to render the user location puck.

@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 
 @objc public enum TMBPuckBearingSource : Int {
@@ -6,7 +7,7 @@ import MapboxMaps
 }
 
 extension TMBPuckBearingSource {
-    func swiftOnly() -> PuckBearingSource {
+    func swiftOnly() -> PuckBearing {
         switch(self) {
         case .heading: return .heading
         case .course: return .course

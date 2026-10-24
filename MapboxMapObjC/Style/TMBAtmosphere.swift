@@ -1,4 +1,5 @@
 // This file is generated.
+import UIKit
 import Foundation
 import MapboxMaps
 

@@ -1,3 +1,4 @@
+import UIKit
 //
 //  AnnotationManager.swift
 //  MapboxMapObjC

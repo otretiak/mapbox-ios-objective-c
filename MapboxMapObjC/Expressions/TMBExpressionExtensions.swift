@@ -1,3 +1,5 @@
+import UIKit
+import Foundation
 // This file is generated.
 @objc extension TMBExpression {
     public class func subtract() -> TMBExpression {

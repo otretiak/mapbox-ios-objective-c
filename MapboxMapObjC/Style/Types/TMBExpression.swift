@@ -1,3 +1,4 @@
+import UIKit
 import MapboxMaps
 
 @objc open class TMBExpression: NSObject {
@@ -89,7 +90,15 @@ import MapboxMaps
                     return TMBNumberFormatOptions(value)
                 case .collator(let value):
                     return TMBCollatorOptions(value)
+                case .image(let value):
+                    if let data = try? JSONEncoder().encode(value),
+                       let json = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed]) {
+                        return json
+                    }
+                    return value
                 }
+            case .dictionary(let value):
+                return value.mapValues { getObjcArguments([$0])[0] }
             case .geoJSONObject(let geojson):
                 switch(geojson) {
                 case .geometry(let value):

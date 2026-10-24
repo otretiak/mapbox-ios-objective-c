@@ -1,3 +1,4 @@
+import UIKit
 //
 //  TMBTileCacheBudgetSize.swift
 //  MapboxMapObjC

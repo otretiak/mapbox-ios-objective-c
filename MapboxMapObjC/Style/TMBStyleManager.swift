@@ -153,6 +153,24 @@ import MapboxMaps
         origin.updateGeoJSONSource(withId: id, data: (data).unwrap(), dataId: dataId)
     }
 
+    /// Updates the data of an existing GeoJSON source from a GeoJSON document
+    /// (a `Geometry`, `Feature` or `FeatureCollection`).
+    ///
+    /// - Parameters:
+    ///   - id: The identifier representing the GeoJSON source.
+    ///   - geoJSON: The GeoJSON document to decode and associate with the source.
+    ///   - dataId: An optional data ID to filter ``MapboxMap/onSourceDataLoaded`` to only the specified data source.
+    ///   - completion: Called synchronously with a decoding error, or `nil` once the update is scheduled.
+    @objc public func updateGeoJSONSource(withId  id: String, geoJSON : String, dataId : String?, completion: ((Error?)->Void)?) {
+        do {
+            let object = try JSONDecoder().decode(GeoJSONObject.self, from: Data(geoJSON.utf8))
+            origin.updateGeoJSONSource(withId: id, geoJSON: object, dataId: dataId)
+            completion?(nil)
+        } catch {
+            completion?(error)
+        }
+    }
+
     /// Add additional features to a GeoJSON style source.
     ///
     /// The add operation will be scheduled and applied on a GeoJSON serialization queue.
@@ -356,10 +374,10 @@ import MapboxMaps
     ///
     ///  - Returns:
     ///   - The style import configuration or a string describing an error if the operation was not successful.
-    @objc public func getStyleImportConfigProperties(for  importId: String, completion: (([String: StylePropertyValue]?, Error?)->Void)?) {
+    @objc public func getStyleImportConfigProperties(for  importId: String, completion: (([String: TMBStylePropertyValue]?, Error?)->Void)?) {
         do {
             let result = try origin.getStyleImportConfigProperties(for: importId)
-            completion?(result, nil)
+            completion?(result.mapValues { $0.wrap() }, nil)
         } catch {
             completion?(nil, error)
         }
@@ -373,10 +391,10 @@ import MapboxMaps
     ///
     ///  - Returns:
     ///   - The style import configuration or a string describing an error if the operation was not successful.
-    @objc public func getStyleImportConfigProperty(for  importId: String, config : String, completion: ((StylePropertyValue?, Error?)->Void)?) {
+    @objc public func getStyleImportConfigProperty(for  importId: String, config : String, completion: ((TMBStylePropertyValue?, Error?)->Void)?) {
         do {
             let result = try origin.getStyleImportConfigProperty(for: importId, config: config)
-            completion?(result, nil)
+            completion?(result.wrap(), nil)
         } catch {
             completion?(nil, error)
         }
@@ -574,8 +592,8 @@ import MapboxMaps
     ///
     /// - Returns:
     ///     The value of the property in the layer with layerId.
-    @objc public func layerProperty(for  layerId: String, property : String) -> StylePropertyValue {
-        origin.layerProperty(for: layerId, property: property)
+    @objc public func layerProperty(for  layerId: String, property : String) -> TMBStylePropertyValue {
+        origin.layerProperty(for: layerId, property: property).wrap()
     }
 
     /// Sets a JSON value to a style layer property.
@@ -604,8 +622,8 @@ import MapboxMaps
     ///
     /// - Returns:
     ///     The default value of the property for the layers with type layerType.
-    @objc public func layerPropertyDefaultValue(for  layerType: TMBLayerType, property : String) -> StylePropertyValue {
-        StyleManager.layerPropertyDefaultValue(for: (layerType).unwrap(), property: property)
+    @objc public func layerPropertyDefaultValue(for  layerType: TMBLayerType, property : String) -> TMBStylePropertyValue {
+        StyleManager.layerPropertyDefaultValue(for: (layerType).unwrap(), property: property).wrap()
     }
 
     /// Gets the properties for a style layer.
@@ -710,8 +728,8 @@ import MapboxMaps
     ///   - property: Style source property name.
     ///
     /// - Returns: The value of the property in the source with sourceId.
-    @objc public func sourceProperty(for  sourceId: String, property : String) -> StylePropertyValue {
-        origin.sourceProperty(for: sourceId, property: property)
+    @objc public func sourceProperty(for  sourceId: String, property : String) -> TMBStylePropertyValue {
+        origin.sourceProperty(for: sourceId, property: property).wrap()
     }
 
     /// Sets a value to a style source property.
@@ -781,8 +799,8 @@ import MapboxMaps
     ///
     /// - Returns:
     ///     The default value for the named property for the sources with type sourceType.
-    @objc public func sourcePropertyDefaultValue(for  sourceType: String, property : String) -> StylePropertyValue {
-        StyleManager.sourcePropertyDefaultValue(for: sourceType, property: property)
+    @objc public func sourcePropertyDefaultValue(for  sourceType: String, property : String) -> TMBStylePropertyValue {
+        StyleManager.sourcePropertyDefaultValue(for: sourceType, property: property).wrap()
     }
 
     // MARK: - Image source
@@ -1040,8 +1058,8 @@ import MapboxMaps
     /// - Parameter property: Style terrain property name.
     ///
     /// - Returns: Style terrain property value.
-    @objc public func terrainProperty(_  property: String) -> StylePropertyValue {
-        origin.terrainProperty(property)
+    @objc public func terrainProperty(_  property: String) -> TMBStylePropertyValue {
+        origin.terrainProperty(property).wrap()
     }
 
     // MARK: - Atmosphere
@@ -1109,8 +1127,8 @@ import MapboxMaps
     /// - Parameter property: Style atmosphere property name.
     ///
     /// - Returns: Style atmosphere property value.
-    @objc public func atmosphereProperty(_  property: String) -> StylePropertyValue {
-        origin.atmosphereProperty(property)
+    @objc public func atmosphereProperty(_  property: String) -> TMBStylePropertyValue {
+        origin.atmosphereProperty(property).wrap()
     }
 
     // MARK: - Custom geometry
