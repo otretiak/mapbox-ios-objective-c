@@ -6,7 +6,7 @@
 set -euo pipefail
 
 SDK_ARTIFACTS=${1:?path to the official SDK artifacts folder (contains MapboxMaps.xcframework)}
-VERSION=${2:-11.33.0}
+VERSION=${2:-11.27.3}
 MIN_IOS=15.0
 ROOT=${0:A:h:h}
 OUT=$ROOT/.build/swiftc

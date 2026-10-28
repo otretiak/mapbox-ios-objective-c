@@ -1,7 +1,7 @@
 // swift-tools-version:5.9
 import PackageDescription
 
-let mapboxMapsVersion: Version = "11.33.0"
+let mapboxMapsVersion: Version = "11.27.3"
 
 let package = Package(
     name: "MapboxMapObjC",
